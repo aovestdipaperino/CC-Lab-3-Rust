@@ -1,0 +1,4 @@
+# Normalize line endings to LF on checkout across all platforms.
+# Without this, Git-for-Windows (core.autocrlf=true) checks out CRLF, which
+# makes `cargo fmt --check` fail and breaks the bash scripts.
+* text=auto eol=lf

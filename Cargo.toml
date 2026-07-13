@@ -1,0 +1,16 @@
+[package]
+name = "calc"
+version = "0.1.0"
+edition = "2021"
+authors = ["Enzo Lombardi <enzinol@gmail.com>"]
+description = "Lab 3: a command-line arithmetic expression evaluator"
+repository = "https://github.com/aovestdipaperino/CC-Lab-3-Rust"
+license = "MIT"
+
+[[bin]]
+name = "calc"
+path = "src/main.rs"
+
+[lib]
+name = "calc"
+path = "src/lib.rs"
