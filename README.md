@@ -1,31 +1,42 @@
 # CC-Lab-3-Rust — `calc`
 
-Lab 3 (Rust): implement a complex feature and let a verification-gated loop confirm it.
+Lab 3 (Rust): implement a feature in stages and let a verification-gated loop
+confirm each one.
 
 `calc` is a command-line arithmetic evaluator. Its core, `eval`, ships as a stub
-that only understands a single number. Your job is to grow it into a full
-expression evaluator (operator precedence, parentheses, unary minus, decimals).
+that only understands a single number. You grow it over **five steps**, each
+harder than the last:
+
+1. Core arithmetic (`+ - * /`, parentheses, unary minus, decimals)
+2. Modulo (`%`)
+3. Power (`^`, right-associative)
+4. Functions (`sqrt`, `abs`, `min`, `max`, `pow`)
+5. Error messages that report the column of a bad character
 
 ## Steps
 
 1. **Enable the Stop hook** so Claude keeps working until the gate is green:
    ```sh
-   cp .claude/settings.json.disabled .claude/settings.json      # macOS / Linux
-   cp .claude/settings.windows.json.disabled .claude/settings.json   # Windows
+   cp .claude/settings.json.disabled .claude/settings.json          # macOS / Linux
+   cp .claude/settings.windows.json.disabled .claude/settings.json  # Windows
    ```
    Run `/hooks` to confirm it registered.
 
-2. **Ask Claude:** "make check.sh pass" (`check.ps1` on Windows). Then watch the
-   loop iterate: each time Claude tries to stop, the hook re-runs the gate and
-   feeds any failures back until everything is green.
+2. **Ask Claude:** "make check.sh pass" (`check.ps1` on Windows). Watch the loop:
+   the gate runs the steps in order and stops at the first failure, so Claude
+   works its way up one step at a time.
 
-3. **Read the diff.** Did it implement a real evaluator, or take a shortcut?
+3. **Read the diff** as it goes. Did it implement each step for real?
+
+Getting through every step is not required — the later steps are there so a fast
+run doesn't finish with time to spare.
 
 ## The gate
 
-`./check.sh` (or `.\check.ps1`) runs fmt → build → tests → an acceptance test
-that runs the built binary over `cases.txt`. Prints `CHECK PASSED` /
-`CHECK FAILED` and exits with the matching status.
+`./check.sh` (or `.\check.ps1`) runs `cargo fmt --check` → `cargo build` →
+step 1 → … → step 5. Each step is its test plus an acceptance run of the built
+binary over `cases-stepN.txt`. Prints `CHECK PASSED` / `CHECK FAILED (step N)`
+and exits with the matching status.
 
 ## Reset
 
