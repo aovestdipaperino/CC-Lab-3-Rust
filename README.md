@@ -1,5 +1,7 @@
 # CC-Lab-3-Rust — `calc`
 
+[![GitHub stars](https://img.shields.io/github/stars/aovestdipaperino/CC-Lab-3-Rust?logo=github&color=brightgreen)](https://github.com/aovestdipaperino/CC-Lab-3-Rust/stargazers)
+
 Lab 3 (Rust): implement a feature in stages and let a verification-gated loop
 confirm each one.
 
